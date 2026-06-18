@@ -1,6 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import TabContent from './TabContent'
+import styled from 'styled-components'
+
+const Box = styled.div`
+    padding: 20px 0;
+    color: gray;
+`
+
+const YellowBtn = styled.button`
+    color : white;
+    font-size: 30px;
+    width: 100%;
+    padding : 100px;
+    border: 1px solid #ccc;
+    background-image:url("https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1112&q=80");
+    background-size: cover;
+    background-position: center;
+`
 
 const Detail = (props) => {
     const { shoes } = props
@@ -33,6 +50,10 @@ const Detail = (props) => {
                     2초이내 구매시 할인
                 </div>
             }
+
+            <Box>
+                <YellowBtn>지금 구매하면 10% 할인</YellowBtn>
+            </Box>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div className="w-full">
@@ -76,8 +97,8 @@ const Detail = (props) => {
                     버튼2
                 </li>
             </ul>
-
-            <TabContent tab={tab} />
+	
+            <TabContent tab={tab} shoes={shoes} />
 
 
         </div>
