@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import TabContent from './TabContent'
 import styled from 'styled-components'
+// import { useDispatch } from 'react-redux'
+import { addItem } from '../state/cartSlice'
 
 const Box = styled.div`
     padding: 20px 0;
@@ -26,6 +28,11 @@ const Detail = (props) => {
     const [tab, setTab] = useState(0)
     const [alert, setAlert] = useState(true)
     const [fade, setFade] = useState('')
+    // const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+
+
     
     let selproduct = shoes.find(x => x.id == parseInt(id))
 
@@ -63,7 +70,12 @@ const Detail = (props) => {
                     <h4 className="text-2xl font-bold text-gray-900">{selproduct.title}</h4>
                     <p className="text-gray-600 leading-relaxed">{selproduct.content}</p>
                     <p className="text-xl font-semibold text-gray-900">{selproduct.price}원</p>
-                    <button className="bg-red-600 hover:bg-red-700 text-white font-medium px-6 py-2.5 rounded-lg transition-colors shadow-md active:scale-95 transform">
+                    <button className="bg-red-600 hover:bg-red-700 text-white font-medium px-6 py-2.5 rounded-lg transition-colors shadow-md active:scale-95 transform" onClick={() => {
+                        addItem({ id: selproduct.id, imgUrl: selproduct.imgUrl, item: selproduct.title, price:selproduct.price,  amount: 1 });
+                        if (window.confirm('장바구니로 이동하시겠습니까?')) {
+                            navigate('/cart');
+                        }
+                    }}>
                         주문하기
                     </button>
                 </div>

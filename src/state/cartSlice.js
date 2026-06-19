@@ -2,10 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const cart = createSlice({
     name: 'cart',
-    initialState:[
-        {id: 1, item: '토마토', amount: 2},
-        {id: 2, item: '수박', amount: 1},
-    ],
+    initialState:[],
     reducers: {
         addCount(state, action){
             let idx = state.findIndex(a=> a.id === action.payload) 
